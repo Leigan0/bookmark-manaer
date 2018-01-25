@@ -1,5 +1,5 @@
-require_relative './app'
-require_relative './models/database_setup'
+require_relative './app/app'
+require_relative './app/models/database_setup'
 
 
 run BookMarkManager

@@ -1,7 +1,7 @@
 ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
-require './models/database_setup'
+require './app/models/database_setup'
 
 class BookMarkManager < Sinatra::Base
   get '/' do
