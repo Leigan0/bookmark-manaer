@@ -4,6 +4,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
+require 'features/web_helpers'
 
 Capybara.app = BookMarkManager
 
