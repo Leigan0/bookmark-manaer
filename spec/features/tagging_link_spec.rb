@@ -27,7 +27,7 @@ feature 'add mulitple tags to links' do
     expect(link.tags.map(&:name)).to include('Social','Friends')
 
     within 'ul#links' do
-    expect(page).to have_content('Social,Friends')
+    expect(page).to have_content('Social, Friends')
     end
   end
 end
