@@ -12,12 +12,13 @@ class User
   attr_reader :password
 
   validates_confirmation_of :password
-  validates_format_of :email, as: :email_address
+  validates_format_of :email_address, as: :email_address
+  validates_uniqueness_of :email_address
 
 
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_hash = @password
+  def password=(password)
+    @password = password
+    self.password_hash = BCrypt::Password.create(password)
   end
 
 end

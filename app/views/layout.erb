@@ -2,12 +2,14 @@
   <head>
     <title>Bookmark Manager</title>
   </head>
-  <% if flash[:error] %>
+  <% if flash[:errors] %>
     <div class='alert alert-success'>
-      <%= flash[:error] %>
+      <% flash[:errors].each do |e| %>
+        <li><%= e %></li>
+      <% end %>
   </div>
   <% end %>
-  
+
   <body>
     <% if @current_user %>
       Welcome <%= current_user.email_address %>
