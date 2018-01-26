@@ -10,3 +10,9 @@
     <%= yield %>  <!-- this then yields to the view which has been called by your controller -->
   </body>
 </html>
+
+<% if flash[:error] %>
+  <div class='alert alert-success'>
+    <%= flash[:error] %>
+</div>
+<% end %>

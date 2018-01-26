@@ -7,6 +7,8 @@ feature 'first time user can register' do
   end
   scenario 'user password verifcation does not match' do
     expect{ user_sign_up_non_matching_passwords }.not_to change { User.count }
+    expect(page).to have_content "Passwords do not match, please try again"
     expect(current_path).to eq '/users/new'
+    expect(page).to have_selector("input[value='email123@example.com']")
   end
 end

@@ -3,7 +3,7 @@
 
 <form action="/users" method="post">
   <label for="email_address">Username (email):
-    <input type="text" name="email_address">
+    <input type="text" name="email_address" value=<%= @user_email if @user_email %> >
   <label for="password">Password:
   <input type="password" name="password">
   <label for="password_confirmation">Password confirmation:

@@ -1,10 +1,11 @@
 ENV['RACK_ENV'] ||= 'development'
-
+require 'sinatra/flash'
 require 'sinatra/base'
 require './app/models/database_setup'
 
 class BookMarkManager < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
   set :session_secret, '0ac8368e8d59a45c4d9f5d11f36dbfaa2108a8c0f7b1be98f39933356bcee17a'
 
   helpers do
@@ -43,13 +44,19 @@ class BookMarkManager < Sinatra::Base
   end
 
   get '/users/new' do
+    @user_email = session[:user_email]
     erb :'users/new'
   end
 
   post '/users' do
     user = User.create(email_address: params[:email_address], password_confirmation: params[:password_confirmation], password: params[:password])
-    redirect 'users/new' unless user.valid?
     session[:user_id] = user.id
-    redirect '/links'
+    session[:user_email] = user.email_address
+    if user.valid?
+      redirect '/links'
+    else
+      flash[:error] = "Passwords do not match, please try again"
+      redirect '/users/new'
+    end
   end
 end
