@@ -13,3 +13,11 @@ def user_sign_up_non_matching_passwords
   fill_in 'password_confirmation', with: 'password456'
   click_button 'sign-up'
 end
+
+def user_sign_up_no_email
+  visit '/users/new'
+  fill_in 'email_address', with: nil
+  fill_in 'password', with: '123'
+  fill_in 'password_confirmation', with: '123'
+  click_button 'sign-up'
+end

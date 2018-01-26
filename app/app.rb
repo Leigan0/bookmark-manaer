@@ -44,16 +44,13 @@ class BookMarkManager < Sinatra::Base
   end
 
   get '/users/new' do
-    @user_email = session[:user_email]
     erb :'users/new'
   end
 
-  post '/users' do
-    user = User.create(email_address: params[:email_address], password_confirmation: params[:password_confirmation], password: params[:password])
-    session[:user_id] = user.id
-    session[:user_email] = user.email_address
-    #walkthrough uses save rather than valid? as this returns true if meets criteria set in model
-    if user.valid?
+  post '/users/new' do
+    @user = User.new(email_address: params[:email_address], password_confirmation: params[:password_confirmation], password: params[:password])
+    if @user.save
+      session[:user_id] = @user.id
       redirect '/links'
     else
       flash[:error] = "Passwords do not match, please try again" #walkthrough uses flash.now[:notice] - see walkthrough 20

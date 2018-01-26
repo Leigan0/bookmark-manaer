@@ -1,12 +1,12 @@
 <h1> Welcome to Bookmark Manager </h1>
 <h2> To register please enter your email address and a password </h2>
 
-<form action="/users" method="post">
+<form action="/users/new" method="post">
   <label for="email_address">Username (email):
-    <input type="text" name="email_address" value=<%= @user_email %> >
+    <input type="email" name="email_address" required >
   <label for="password">Password:
-  <input type="password" name="password">
+    <input type="password" name="password">
   <label for="password_confirmation">Password confirmation:
-  <input type="password" name="password_confirmation">
-  <input type="submit" value="sign-up">
+    <input type="password" name="password_confirmation">
+    <input type="submit" value="sign-up">
 </form>
